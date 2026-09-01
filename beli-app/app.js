@@ -204,7 +204,7 @@
     return (
       '<div class="empty-state">' +
         '<div class="big">' + icon + '</div>' +
-        '<div style="font-weight:700;color:var(--ink);margin-bottom:4px;">' + title + '</div>' +
+        '<div class="title">' + title + '</div>' +
         '<div>' + sub + '</div>' +
       '</div>'
     );
