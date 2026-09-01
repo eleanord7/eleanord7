@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beli — Restaurant Rankings</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">B</span>
+        <span class="brand-name">beli</span>
+      </div>
+      <div class="search-wrap">
+        <input id="searchInput" type="text" placeholder="Search restaurants, cuisine, or city…" />
+      </div>
+      <button id="addBtn" class="btn btn-primary">+ Add Restaurant</button>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="been">Been</button>
+      <button class="tab" data-tab="want">Want to Try</button>
+    </nav>
+
+    <main class="content">
+      <section id="statsBar" class="stats-bar"></section>
+      <section id="beenPanel" class="panel active"></section>
+      <section id="wantPanel" class="panel"></section>
+    </main>
+  </div>
+
+  <!-- Add / Edit Restaurant Modal -->
+  <div id="addModal" class="modal-overlay hidden">
+    <div class="modal">
+      <h2 id="addModalTitle">Add a Restaurant</h2>
+      <form id="addForm">
+        <label>Name
+          <input id="fName" type="text" required placeholder="e.g. Lilia" />
+        </label>
+        <div class="row">
+          <label>Cuisine
+            <input id="fCuisine" type="text" placeholder="e.g. Italian" />
+          </label>
+          <label>City
+            <input id="fCity" type="text" placeholder="e.g. Brooklyn, NY" />
+          </label>
+        </div>
+        <label>Notes
+          <textarea id="fNotes" rows="2" placeholder="What to order, vibe, occasion…"></textarea>
+        </label>
+        <fieldset class="status-choice">
+          <legend>Status</legend>
+          <label class="pill"><input type="radio" name="fStatus" value="want" checked /> Want to Try</label>
+          <label class="pill"><input type="radio" name="fStatus" value="been" /> Been</label>
+        </fieldset>
+        <div class="modal-actions">
+          <button type="button" id="cancelAdd" class="btn btn-ghost">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sentiment Modal -->
+  <div id="sentimentModal" class="modal-overlay hidden">
+    <div class="modal">
+      <h2>How was <span id="sentimentName"></span>?</h2>
+      <p class="modal-sub">This decides which tier it ranks in.</p>
+      <div class="sentiment-options">
+        <button class="sentiment-btn liked" data-sentiment="liked">🙂<br>I liked it</button>
+        <button class="sentiment-btn fine" data-sentiment="fine">😐<br>It was fine</button>
+        <button class="sentiment-btn disliked" data-sentiment="disliked">🙁<br>I disliked it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Modal -->
+  <div id="compareModal" class="modal-overlay hidden">
+    <div class="modal compare-modal">
+      <h2>Which was better?</h2>
+      <p class="modal-sub">Comparing within your "<span id="compareBucketLabel"></span>" places.</p>
+      <div class="compare-options">
+        <button id="compareLeft" class="compare-card"></button>
+        <span class="vs">vs</span>
+        <button id="compareRight" class="compare-card"></button>
+      </div>
+      <button id="compareTie" class="btn btn-ghost tie-btn">Too close to call</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
